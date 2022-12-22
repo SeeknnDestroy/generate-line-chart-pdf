@@ -1,25 +1,25 @@
 const fs = require("fs");
-const createLabel = require("./createLabel");
-const createChart = require("./createChart");
-const createPDF = require("./createPDF");
-const createColumn = require("./createColumn");
 const PDFDocument = require('pdfkit');
+const createLabel = require("./modules/createLabel");
+const createChart = require("./modules/createChart");
+const createPDF = require("./modules/createPDF");
+const createColumn = require("./modules/createColumn");
+const generatePGA = require("./modules/generatePGA");
 
-const pathToImgX = "./exampleX.png";
-const pathToImgY = "./exampleY.png";
-const pathToImgZ = "./exampleZ.png";
+// const pathToImgX = "./exampleX.png";
+// const pathToImgY = "./exampleY.png";
+// const pathToImgZ = "./exampleZ.png";
 
 const pathToCSV = "./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv";
 const labels = createLabel(pathToCSV);
 
-const valuesX = createColumn(pathToCSV, 1);
-const valuesY = createColumn(pathToCSV, 2);
-const valuesZ = createColumn(pathToCSV, 3);
+const [valuesX, valuesY, valuesZ] = createColumn(pathToCSV);
+const [[maxPGAX, minPGAX, absPGAX], [maxPGAY, minPGAY, absPGAY], [maxPGAZ, minPGAZ, absPGAZ]] = generatePGA(pathToCSV);
 
 async function main() {
-    const imageX = await createChart(labels, valuesX, 'rgba(0, 0, 255)', 'x');
-    const imageY = await createChart(labels, valuesY, 'rgba(255, 0, 0)', 'y');
-    const imageZ = await createChart(labels, valuesZ, 'rgba(0, 255, 0', 'z');
+    const imageX = await createChart(labels, valuesX, 'rgba(0, 0, 255)', 'x', maxPGAX, minPGAX, absPGAX);
+    const imageY = await createChart(labels, valuesY, 'rgba(255, 0, 0)', 'y', maxPGAY, minPGAY, absPGAY);
+    const imageZ = await createChart(labels, valuesZ, 'rgba(0, 255, 0', 'z', maxPGAZ, minPGAZ, absPGAZ);
     // Wait for all images to be created before creating the PDF
     const [imageXBuffer, imageYBuffer, imageZBuffer] = await Promise.all([
         imageX,

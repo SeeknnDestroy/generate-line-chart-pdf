@@ -1,19 +1,19 @@
 const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
 const fs = require("fs");
 const createPDF = require("./createPDF");
+const createColumn = require("./createColumn");
 
 const width = 1125;
 const height = 330;
-const maxPGA = Math.max(...[3,5,7]);
 
 //Create line chart
-const createChart = async(labels, data, color, axis) => {
+const createChart = async(labels, data, color, axis, maxPGA, minPGA, absPGA) => {
     const config = {
         type: "line",
         data: {
             labels: labels,
             datasets: [{
-                label: `${axis}-axis, +PGA: ${maxPGA} -PGA: `,
+                label: `${axis}-axis   +PGA:${maxPGA.toFixed(2)}   -PGA:${minPGA.toFixed(2)}   PGA:${absPGA.toFixed(2)} `,
                 data: data,
                 backgroundColor: color,
                 borderColor: color,
@@ -55,7 +55,7 @@ const createChart = async(labels, data, color, axis) => {
                     suggestedMax: 10,
                     title: {
                         display: true,
-                        text: "Acc (cm/s^2)"
+                        text: `Acc (cm/s²)`
                     }
                 }
             }
