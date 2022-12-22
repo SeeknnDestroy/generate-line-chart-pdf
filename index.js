@@ -6,7 +6,11 @@ const createPDF = require("./modules/createPDF");
 const createColumn = require("./modules/createColumn");
 const generatePGA = require("./modules/generatePGA");
 
-const pathToCSV = "./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv";
+//node index.js ./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv 
+//komutunda 2.index dosyayı göstermektedir.
+var arguments=process.argv
+const pathToCSV= arguments[2].toString();
+//const pathToCSV = "./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv";
 const labels = createLabel(pathToCSV);
 
 const [valuesX, valuesY, valuesZ] = createColumn(pathToCSV);
