@@ -1,0 +1,46 @@
+const fs = require("fs");
+const createLabel = require("./createLabel");
+const createChart = require("./createChart");
+const createPDF = require("./createPDF");
+const createColumn = require("./createColumn");
+const PDFDocument = require('pdfkit');
+
+const pathToImgX = "./exampleX.png";
+const pathToImgY = "./exampleY.png";
+const pathToImgZ = "./exampleZ.png";
+
+const pathToCSV = "./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv";
+const labels = createLabel(pathToCSV);
+
+const valuesX = createColumn(pathToCSV, 1);
+const valuesY = createColumn(pathToCSV, 2);
+const valuesZ = createColumn(pathToCSV, 3);
+
+async function main() {
+    const imageX = await createChart(labels, valuesX, 'rgba(0, 0, 255)', 'x');
+    const imageY = await createChart(labels, valuesY, 'rgba(255, 0, 0)', 'y');
+    const imageZ = await createChart(labels, valuesZ, 'rgba(0, 255, 0', 'z');
+    // Wait for all images to be created before creating the PDF
+    const [imageXBuffer, imageYBuffer, imageZBuffer] = await Promise.all([
+        imageX,
+        imageY,
+        imageZ,
+    ]);
+    // fs.writeFile(pathToImgX ,imageX, chartCallback);
+    // fs.writeFile(pathToImgY ,imageY, chartCallback);
+    // fs.writeFile(pathToImgZ ,imageZ, chartCallback);
+    const doc = new PDFDocument({ size: "A4" });
+    // Add the first image
+    doc.image(imageXBuffer, 0, 0, { width: 600, height: 200 });
+    // Add the second image
+    doc.image(imageYBuffer, 0, 250, { width: 600, height: 200 });
+    // Add the third image
+    doc.image(imageZBuffer, 0, 500, { width: 600, height: 200 });
+    // Save the PDF to a file
+    doc.pipe(fs.createWriteStream('output110.pdf')).on('finish', () => {
+        console.log('PDF saved');
+    });
+    doc.end();
+}
+
+main();

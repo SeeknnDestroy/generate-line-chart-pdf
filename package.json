@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "chartjs-node-canvas": "^4.1.6",
+    "fs": "^0.0.1-security",
+    "pdfkit": "^0.13.0"
+  }
+}
