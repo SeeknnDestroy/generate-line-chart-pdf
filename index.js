@@ -6,10 +6,6 @@ const createPDF = require("./modules/createPDF");
 const createColumn = require("./modules/createColumn");
 const generatePGA = require("./modules/generatePGA");
 
-// const pathToImgX = "./exampleX.png";
-// const pathToImgY = "./exampleY.png";
-// const pathToImgZ = "./exampleZ.png";
-
 const pathToCSV = "./seismicdata_8001_202211230409_0dd64ce0-98a2-490a-abad-dc33381e6a33.csv";
 const labels = createLabel(pathToCSV);
 
@@ -26,9 +22,7 @@ async function main() {
         imageY,
         imageZ,
     ]);
-    // fs.writeFile(pathToImgX ,imageX, chartCallback);
-    // fs.writeFile(pathToImgY ,imageY, chartCallback);
-    // fs.writeFile(pathToImgZ ,imageZ, chartCallback);
+
     const doc = new PDFDocument({ size: "A4" });
     // Add the first image
     doc.image(imageXBuffer, 0, 0, { width: 600, height: 200 });
