@@ -1,5 +1,5 @@
 # CSV Data Visualization and PDF Conversion
-This project is a tool for visualizing data from CSV files as line charts and converting the charts to a PDF document. The CSV data is expected to contain three columns of numerical values representing the x, y, and z coordinates of a time series. The program reads the CSV data, generates line charts for each coordinate using the Chart.js library, and combines the charts into a single PDF document.
+This project is a tool for visualizing data from CSV files as line charts and converting the charts to a PDF document. The CSV data is expected to contain one time column and three columns of numerical values representing the x, y, and z coordinates. The program reads the CSV data, generates line charts for each coordinate using the Chart.js library, and combines the charts into a single PDF document.
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
