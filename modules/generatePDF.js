@@ -5,7 +5,12 @@ const createColumn = require("./createColumn");
 const generatePGA = require("./generatePGA");
 const createChart = require("./createChart");
 
-async function generatePDF(folderPath, pageCompleted) {
+let pageNumber = 2;
+function pageCompleted() {
+    console.log(`Completed creating page ${pageNumber}`);
+    pageNumber++;
+}
+async function generatePDF(folderPath) {
     // Create a new PDF document
     const doc = new PDFDocument({ size: "A4" });
     // Read the contents of folder
@@ -44,7 +49,7 @@ async function generatePDF(folderPath, pageCompleted) {
         }
     }
     // Save the PDF to a file
-    doc.pipe(fs.createWriteStream('output2.pdf')).on('finish', () => {
+    doc.pipe(fs.createWriteStream('output.pdf')).on('finish', () => {
         console.log('PDF saved');
     });
     doc.end();
