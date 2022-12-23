@@ -1,6 +1,6 @@
 {
   "name": "csv-chart-generator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A tool for visualizing data from CSV files as line charts and converting the charts to a PDF document.",
   "main": "index.js",
   "scripts": {
