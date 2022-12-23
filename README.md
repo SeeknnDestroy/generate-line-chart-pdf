@@ -34,7 +34,7 @@ The first row should not contain the column names, rows should contain the data 
 2. In your Node.js app, require the CSV Chart Generator module and call the generatePDF function, passing in the path to the folder containing your CSV files:
 
 In your Node.js app, require the CSV Chart Generator module and call the generatePDF function, passing in the path to the folder containing your CSV files:
-```
+
 3. Run your Node.js app to generate the PDF document:
 ```
 node app.js
