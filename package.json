@@ -1,4 +1,17 @@
 {
+  "name": "csv-chart-generator",
+  "version": "1.0.0",
+  "description": "A tool for visualizing data from CSV files as line charts and converting the charts to a PDF document.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'Error: no test specified' && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SeeknnDestroy/generate-line-chart-pdf.git"
+  },
+  "author": "Talha SARI",
+  "license": "MIT",
   "dependencies": {
     "chartjs-node-canvas": "^4.1.6",
     "fs": "^0.0.1-security",
