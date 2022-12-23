@@ -1,4 +1,5 @@
 const fs = require("fs");
+
 function createColumn(pathToFile) {
     //Read the CSV data from the file
     const data = fs.readFileSync(pathToFile,"utf-8");

@@ -29,10 +29,10 @@ function createLabel(pathToFile) {
         const dateTimeString = columns[0];
         const timestamp = Number(dateTimeString);   // Convert the miliseconds value to number
         const date = new Date(timestamp);   // Create a date object from the timestamp
-        const hours = "0" + date.getHours();
-        const minutes = "0" + date.getMinutes();
-        const seconds = "0" + date.getSeconds();
-        const formattedTime = hours + ':' + minutes.substring(-2) + ':' + seconds.substr(-2);
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        const formattedTime = hours + ':' + minutes + ':' + seconds;
         labels.push(formattedTime);
     }
     return labels;
