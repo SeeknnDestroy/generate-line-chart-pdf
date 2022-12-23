@@ -1,7 +1,4 @@
 const { ChartJSNodeCanvas } = require('chartjs-node-canvas');
-const fs = require("fs");
-const createPDF = require("./createPDF");
-const createColumn = require("./createColumn");
 
 const width = 1125;
 const height = 330;
@@ -33,12 +30,6 @@ const createChart = async(labels, data, color, axis, maxPGA, minPGA, absPGA) => 
             backgroundColor: '#FFFFFF',
             borderWidth: 5,
             borderColor: '#000000',
-            plugins: {
-                title: {
-                    display: true,
-                    text: "2053 - HAZNEDAR - GUNGOREN",
-                }
-            },
             scales: {
                 x: {
                     display: true,
@@ -65,9 +56,6 @@ const createChart = async(labels, data, color, axis, maxPGA, minPGA, absPGA) => 
     const chartJSNodeCanvas = new ChartJSNodeCanvas({ width: width, height: height }); 
     const image = await chartJSNodeCanvas.renderToBufferSync(config);
     return image;
-    // fs.writeFile(pathToImg ,image, () => {
-    //     createPDF(pathToImg, pathToPDF);
-    // });
 };
 
 module.exports = createChart;
