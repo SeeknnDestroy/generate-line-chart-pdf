@@ -31,9 +31,8 @@ time,x,y,z
 ...
 ```
 The first row should not contain the column names, rows should contain the data values. The time column should contain the time data in number of milliseconds since January 1, 1970. x, y, and z columns should contain numerical values.
-2. In your Node.js app, require the CSV Chart Generator module and call the generatePDF function, passing in the path to the folder containing your CSV files:
 
-In your Node.js app, require the CSV Chart Generator module and call the generatePDF function, passing in the path to the folder containing your CSV files:
+2. In your Node.js app, require the CSV Chart Generator module and call the generatePDF function, passing in the path to the folder containing your CSV files:
 
 3. Run your Node.js app to generate the PDF document:
 ```
